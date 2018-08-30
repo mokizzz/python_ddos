@@ -24,7 +24,6 @@ class Ddos:
 
 	def attack(self):
 		self.runningThread += 1
-		# self.flush()
 
 		if self.methodId == 0:
 			res = requests.get(self.url)
@@ -33,7 +32,6 @@ class Ddos:
 		self.status_code = res.status_code
 
 		self.runningThread -= 1
-		# self.flush()
 
 	def flush(self):
 		print('Threads: ', self.runningThread, ' StatusCode: ', self.status_code)
