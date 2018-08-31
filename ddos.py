@@ -1,3 +1,4 @@
+from random_generator import RandomGenerator
 from requests.exceptions import ConnectionError, ConnectTimeout, ReadTimeout
 from threading import Thread
 from time import sleep
@@ -24,6 +25,9 @@ class Ddos:
         self.setPostData(postData)
 
         self.setTimeout(timeout)
+
+        # 随机生成器初始化
+        self.generator = RandomGenerator()
 
     # ddos开始
     def start(self):

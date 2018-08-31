@@ -6,5 +6,5 @@ if __name__ == '__main__':
                maxThread=MAX_THREAD, headers=HEADERS)
     dos.start()
 
-    import os
-    os.system("pause")
+    # import os
+    # os.system("pause")
