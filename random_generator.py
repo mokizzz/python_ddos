@@ -8,18 +8,25 @@ class RandomGenerator:
         self.letterCode = '''abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ'''
         self.mixCode = '''abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ123456789!@#%&()*"{}'''
 
-    def nextNum(self, length):
+    def nextNum(self, length=1):
         res = ''
         for i in range(length):
             index = randint(0, len(self.numCode) - 1)
             res += self.numCode[index]
         return res
 
-    def nextLetter(self, length):
+    def nextEnglish(self, length=1):
         res = ''
         for i in range(length):
             index = randint(0, len(self.letterCode) - 1)
             res += self.letterCode[index]
+        return res
+
+    def nextChar(self, length=1):
+        res = ''
+        for i in range(length):
+            index = randint(0, len(self.mixCode) - 1)
+            res += self.mixCode[index]
         return res
 
     def nextPwd(self, minLen=6, maxLen=16):

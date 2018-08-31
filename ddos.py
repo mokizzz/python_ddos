@@ -11,10 +11,12 @@ class Ddos:
 
     def __init__(self, url='https://www.baidu.com', methodId=0, maxThread=100,
                  headers={}, getParam={}, postData={}, timeout=10):
+        # 私有变量
         self.attackCount = 0  # 攻击次数计数
         self.runningThread = 0  # 正在运行的线程数
         self.status_code = 0  # 最新状态码
 
+        # 配置访问信息
         self.setUrl(url)
         self.setMethod(methodId)
         self.setMaxThread(maxThread)
@@ -71,6 +73,24 @@ class Ddos:
               ' StatusCode: ', self.status_code,
               ' AttackCount: ', self.attackCount)
 
+    # 将所有文本中的随机生成指令生成为指定东西
+    def replaceRandomValue(self, text):
+        # [EEEE]: 每个E为一个随机字母
+        # [NNNNN]: 每个N为一个随机数字
+        # [CCC]: 每个C为一个随机字母、数字、标点
+        # [NEENCCC]: 可以混用
+        # [PWD]: 随机生成一个不定长密码
+
+        text = text.replace('[PWD]', self.generator.nextPwd())
+
+        while '[E' in text or '[N' in text or '[C' in text:
+            text = text.replace('[E', self.generator.nextEnglish() + '[')
+            text = text.replace('[N', self.generator.nextNum() + '[')
+            text = text.replace('[C', self.generator.nextChar() + '[')
+
+        text = text.replace('[]', '')
+        return text
+
     def setUrl(self, url):
         self.url = url
 
@@ -92,3 +112,8 @@ class Ddos:
 
     def setTimeout(self, timeout):
         self.timeout = timeout
+
+
+if __name__ == '__main__':
+    ddos = Ddos()
+    print(ddos.replaceRandomValue('你好呀[NENNCE]，密码是[PWD]'))
