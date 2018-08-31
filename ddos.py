@@ -2,7 +2,6 @@ from random_generator import RandomGenerator
 from requests.exceptions import ConnectionError, ConnectTimeout, ReadTimeout
 from threading import Thread
 from time import sleep
-from urllib3.exceptions import MaxRetryError, ConnectTimeoutError, ReadTimeoutError
 
 import requests
 import signal
@@ -59,14 +58,8 @@ class Ddos:
             print('[Error]: ConnectionError.')
         except ConnectTimeout:
             print('[Error]: ConnectTimeout.')
-        except ConnectTimeoutError:
-            print('[Error]: ConnectTimeoutError.')
-        except MaxRetryError:
-            print('[Error]: MaxRetryError.')
         except ReadTimeout:
             print('[Error]: ReadTimeout.')
-        except ReadTimeoutError:
-            print('[Error]: ReadTimeoutError.')
         else:
             print('Success.')
         finally:
