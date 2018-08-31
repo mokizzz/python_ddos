@@ -1,6 +1,6 @@
-URL = 'https://bbs.csdn.net/topics/391544754'
+URL = 'http://a2998.com/'
 METHOD_ID = 0  # 访问方法，0-GET 1-POST
-MAX_THREAD = 100  # 最高同时访问线程数量
+MAX_THREAD = 1000  # 最高同时访问线程数量
 TIMEOUT = 10
 
 HEADERS = {

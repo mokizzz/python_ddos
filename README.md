@@ -1,5 +1,7 @@
 # README
-利用python的多线程编写的ddos工具。仿照...的功能进行编写。
+利用python的多线程编写的ddos工具。仿照 [Test404的ddos工具](www.test404.com) 功能进行编写。
+
+请合法食用。欢迎对有害网站进行爆破。
 
 |Author|爱吃大板|
 |--|--|

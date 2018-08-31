@@ -1,7 +1,7 @@
-from requests.exceptions import ConnectionError, ConnectTimeout
+from requests.exceptions import ConnectionError, ConnectTimeout, ReadTimeout
 from threading import Thread
 from time import sleep
-from urllib3.exceptions import MaxRetryError, ConnectTimeoutError
+from urllib3.exceptions import MaxRetryError, ConnectTimeoutError, ReadTimeoutError
 
 import requests
 import signal
@@ -59,8 +59,12 @@ class Ddos:
             print('[Error]: ConnectTimeoutError.')
         except MaxRetryError:
             print('[Error]: MaxRetryError.')
+        except ReadTimeout:
+            print('[Error]: ReadTimeout.')
+        except ReadTimeoutError:
+            print('[Error]: ReadTimeoutError.')
         else:
-            pass
+            print('Success.')
         finally:
             self.runningThread -= 1
 
